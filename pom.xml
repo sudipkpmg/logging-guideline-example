@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>gov.tn.dhs.int</groupId>
+		<artifactId>gov-tn-dhs-int-parent</artifactId>
+		<version>0.1.2</version>
+	</parent>
+	<groupId>gov.tn.dhs.ecm</groupId>
+    <artifactId>logging-guideline-example</artifactId>
+    <version>1.0</version>
+    <name>logging-guideline-example</name>
+    <description>logging-guideline-example</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>parent</id>
+            <url>https://nexus-nonprod.dhs.tn.gov/repository/maven-snapshots/</url>
+        </repository>
+		<repository>
+            <id>parent-releases</id>
+            <url>https://nexus-nonprod.dhs.tn.gov/repository/maven-releases/</url>
+        </repository>
+	</repositories>
+
+<dependencies>
+
+		<!-- DHS Common Framework -->
+
+		<dependency>
+			<groupId>gov.tn.dhs.int</groupId>
+			<artifactId>common-framework</artifactId>
+			<version>0.1.1</version>
+		</dependency>
+
+<!--		&lt;!&ndash; Domain entities dependency &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>gov.tn.dhs.int</groupId>-->
+<!--			<artifactId>service-domain</artifactId>-->
+<!--			<version>0.3.6</version>-->
+<!--		</dependency>-->
+<!--		&lt;!&ndash; camel support for Streaming API, implementation for JSON &ndash;&gt;-->
+
+		<dependency>
+			<groupId>com.box</groupId>
+			<artifactId>box-java-sdk</artifactId>
+			<version>2.50.1</version>
+		</dependency>
+
+		<!-- camel support for Streaming API, implementation for JSON -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-jackson-starter</artifactId>
+		</dependency>
+
+		<!-- Spring boot starter for Apache Camel(Integration engine) -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-jackson</artifactId>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.apache.camel</groupId>-->
+<!--			<artifactId>camel-cdi</artifactId>-->
+<!--		</dependency>-->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-servlet</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-swagger-java</artifactId>
+		</dependency>
+
+		<!-- This dependency provides HTTP based endpoints for consuming HTTP requests 
+			that arrive at a HTTP endpoint that is bound to a published Servlet -->
+
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-actuator</artifactId>-->
+<!--		</dependency>-->
+
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-undertow</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-undertow</artifactId>
+		</dependency>
+
+<!--		<dependency>-->
+<!--			<groupId>com.microsoft.sqlserver</groupId>-->
+<!--			<artifactId>mssql-jdbc</artifactId>-->
+<!--		</dependency>-->
+
+<!--		<dependency>-->
+<!--			<groupId>org.apache.commons</groupId>-->
+<!--			<artifactId>commons-dbcp2</artifactId>-->
+<!--		</dependency>-->
+		
+<!--		     &lt;!&ndash; Monitoring &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.jolokia</groupId>-->
+<!--            <artifactId>jolokia-core</artifactId>-->
+<!--        </dependency>-->
+<!--        	-->
+<!--        &lt;!&ndash; Hawtio Console: SB Actuator + jolokia + hawtio  &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>io.hawt</groupId>-->
+<!--            <artifactId>hawtio-springboot</artifactId>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; Other &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>javax.enterprise</groupId>-->
+<!--            <artifactId>cdi-api</artifactId>-->
+<!--        </dependency>-->
+
+<!--		<dependency>-->
+<!--			<groupId>org.sonarsource.scanner.maven</groupId>-->
+<!--			<artifactId>sonar-maven-plugin</artifactId>-->
+<!--			<version>3.2</version>-->
+<!--		</dependency>-->
+		
+		 <!-- Testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test-spring</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+            <version>3.3.9.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+            <version>2.3.3.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
+	</dependencies>
+
+    <build>
+
+	<plugins>
+			<!-- SB plugin to run locally -->
+			<plugin>
+				<groupId>org.jboss.redhat-fuse</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<outputDirectory>../target</outputDirectory>
+					<finalName>logging-guideline-example</finalName>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<releaseProfiles>releases</releaseProfiles>
+				</configuration>
+			</plugin>
+		</plugins>
+
+    </build>
+
+</project>
