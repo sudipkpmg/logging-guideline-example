@@ -49,7 +49,7 @@ spring:
         name: logging-guideline-example
 logging:
     pattern:
-        console: '%black(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %cyan([apiCode=%mdc{apiCode}]) %magenta([appUserId=%mdc{appUserId}]) %yellow(%C{1.}): %msg%n%throwable'
+        console: '%black(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %magenta([appUserId=%mdc{appUserId}]) %yellow(%C{1.}): %msg%n%throwable'
     level:
         root: INFO
         gov.tn.dhs.ecm: DEBUG

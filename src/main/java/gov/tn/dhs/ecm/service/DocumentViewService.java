@@ -16,8 +16,6 @@ import java.net.URL;
 @Service
 public class DocumentViewService extends BaseService {
 
-    public static final String API_CODE = "/view_document";
-
     private Logging log = new Logging(BaseService.class);
 
     public DocumentViewService(ConnectionHelper connectionHelper) {
@@ -30,19 +28,18 @@ public class DocumentViewService extends BaseService {
         String appUserId = documentViewRequest.getAppUserId();
 
         MDC.put("appUserId", appUserId);
-        MDC.put("apiCode", API_CODE);
 
         log.logDebug("folder view request", exchange);
 
         log.logInfo(String.format("Document View Request = %s", documentViewRequest.toString()), exchange);
 
         BoxDeveloperEditionAPIConnection api = getBoxApiConnection(exchange, log);
-//        api.asUser(appUserId);
 
         try {
+            log.logInfo(String.format("fileId = %s", fileId), exchange);
             BoxFile file = new BoxFile(api, fileId);
             URL previewUrl = file.getPreviewLink();
-            log.logDebug(String.format("previewUrl = %s", previewUrl), exchange);
+            log.logInfo(String.format("previewUrl = %s", previewUrl), exchange);
             DocumentViewResult documentViewResult = new DocumentViewResult();
             documentViewResult.setPreviewUrl(previewUrl.toString());
             log.logInfo(String.format("Document View Result = %s", documentViewResult.toString()), exchange);
@@ -51,7 +48,7 @@ public class DocumentViewService extends BaseService {
             log.logError(e.toString(), exchange);
             switch (e.getResponseCode()) {
                 case 404: {
-                    setupError(exchange,log, "409", "Document not found");
+                    setupError(exchange, log, "409", "Document not found");
                 }
                 default: {
                     setupError(exchange, log, "500", "Document view error");
