@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import gov.tn.dhs.ecm.exception.ServiceErrorException;
 import gov.tn.dhs.ecm.model.DocumentViewRequest;
 import gov.tn.dhs.ecm.model.DocumentViewResult;
+import gov.tn.dhs.ecm.model.SimpleMessage;
 import gov.tn.dhs.ecm.service.DocumentViewService;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
@@ -46,7 +47,7 @@ class ApiRoute extends RouteBuilder {
         restConfiguration()
                 .bindingMode(RestBindingMode.auto)
                 .component("undertow")
-                .contextPath("/ecm-api/v1")
+                .contextPath("/")
                 .port(9090)
                 .skipBindingOnErrorCode(false)
                 .enableCORS(true)
@@ -66,6 +67,22 @@ class ApiRoute extends RouteBuilder {
                 .route()
                 .routeId("DocumentView_Route")
                 .bean(documentViewService, "process")
+                .endRest()
+        ;
+
+        // The route "/" is useful for viewing service running status in the OpenShift console
+        SimpleMessage simpleMessage = new SimpleMessage("Logging Guideline Example service is running");
+        rest("/")
+                .consumes("application/json")
+                .produces("application/json")
+                .get("/")
+                .outType(String.class)
+                .route()
+                .routeId("ServiceStatus_Route")
+                .transform(simple(simpleMessage.toString()))
+                .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(200))
+                .setHeader("Content-Type", constant("application/json"))
+                .setHeader("Accept", constant("application/json"))
                 .endRest()
         ;
 

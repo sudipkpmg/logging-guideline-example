@@ -1,8 +1,10 @@
 package gov.tn.dhs.ecm.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.tn.dhs.ecm.util.JsonUtil;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ClientError {
 
     @JsonProperty("code")
